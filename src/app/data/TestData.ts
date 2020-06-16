@@ -74,7 +74,6 @@ export class TestData {
       title: 'Сходить на митап по программированию',
       priority: TestData.proirities[1],
       completed: true,
-      category: TestData.categories[2],
       date: new Date('2020-06-01')
     },
 
