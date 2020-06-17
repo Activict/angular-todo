@@ -7,3 +7,40 @@
   color: #b7B7B7;
   font-weight: bolder;
 }
+
+table.mat-table {
+  width: 100%;
+}
+
+.mat-column-id {
+  width: 4%;
+  text-align: center;
+}
+
+.mat-column-title {
+  width: 42%;
+}
+
+.mat-column-priority {
+  width: 14%;
+}
+
+.mat-column-category {
+  width: 13%;
+}
+
+.mat-column-select {
+  width: 3%;
+}
+
+.mat-column-operations {
+  width: 8%;
+}
+
+.mat-column-color {
+  width: 1% !important;
+}
+
+.mat-column-date {
+  width: 15% !important;
+}

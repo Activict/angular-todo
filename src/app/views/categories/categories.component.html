@@ -4,14 +4,13 @@
 
     Tip 2: you can also add an image using data-image tag
 -->
-  <div class="logo"><a class="simple-text logo-normal" href="http://www.creative-tim.com">
-    Creative Tim
+  <div class="logo"><a class="simple-text logo-normal" href="№">
+    КАТЕГОРИИ
   </a></div>
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li (click)="showTaskByCategory(category)"
-          *ngFor="let category of categories"
-          [class.active]="category === selectedCategory"
+          *ngFor="let category of categories" [class.active]="category === selectedCategory"
           class="nav-item"
       >
         <a class="nav-link" href="#">
