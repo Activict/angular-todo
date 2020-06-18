@@ -49,7 +49,7 @@
             mat-cell
         >
 
-          {{task.date ? (task.date | date: "medium") : "Нет даты"}}
+          {{task.date | taskDate}}
 
         </td>
       </ng-container>
