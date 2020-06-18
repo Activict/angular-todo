@@ -8,8 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class ConfirmDialogComponent implements OnInit {
 
-  dialogTitle: string = 'Удаление задачи';
-  message: string = 'Подтвердите удаление';
+  dialogTitle: string = 'Подтвердите удаление';
+  message: string = '';
 
   constructor(
     private dialogRef: MatDialogRef<ConfirmDialogComponent>,

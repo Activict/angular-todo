@@ -35,7 +35,6 @@ body {
 
 .red {
   color: red;
-  background-color: #ffe1e4;
 }
 
 .blue {
@@ -49,4 +48,9 @@ body {
 .link {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.line {
+  border-bottom: 1px solid #dadada;
+  padding-top: 20px;
 }

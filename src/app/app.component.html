@@ -1,6 +1,8 @@
 <div class="wrapper ">
 
   <app-categories (selectCategory)="onSelectCategory($event)"
+                  (deleteCategory)="onDeleteCategory($event)"
+                  (updateCategory)="onUpdateCategory($event)"
                   [selectedCategory]="selectedCategory"
                   [categories]="categoriesApp"
   ></app-categories>

@@ -17,8 +17,6 @@ export class DataHandlerService {
   private categoryDaoArray = new CategoryDAOArray();
   private priorityDaoArray = new PriorityDAOArray();
 
-  taskSubject = new BehaviorSubject<Task[]>(TestData.tasks);
-
   constructor() {
   }
 
@@ -48,6 +46,14 @@ export class DataHandlerService {
 
   deleteTask(id: number): Observable<Task> {
     return this.taskDaoArray.delete(id);
+  }
+
+  deleteCategory(id: number): Observable<Category> {
+    return this.categoryDaoArray.delete(id);
+  }
+
+  updateCategory(category: Category): Observable<Category> {
+    return this.categoryDaoArray.update(category);
   }
 }
 
