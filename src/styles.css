@@ -46,24 +46,7 @@ body {
   color: #006d18;
 }
 
-.delete-icon {
+.link {
+  text-decoration: underline;
   cursor: pointer;
-  color: #ea6561;
-  font-size: 18px;
-  margin-left: 3px;
-  margin-right: 3px;
-}
-
-.edit-icon {
-  cursor: pointer;
-  color: #9a9a9a;
-  font-size: 18px;
-  margin-left: 3px;
-  margin-right: 3px;
-}
-
-.mat-header-cell {
-  color: #9c27b0;
-  font-size: 1.063rem;
-  font-weight: normal;
 }

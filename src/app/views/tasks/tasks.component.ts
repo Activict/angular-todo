@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog.component';
+import {Category} from '../../model/Category';
 
 @Component({
   selector: 'app-tasks',
@@ -16,7 +17,8 @@ import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog
 export class TasksComponent implements OnInit {
 
   displayedColumns: string[] =
-    ['color', 'id', 'title', 'date', 'priority', 'category', 'operations', 'select'];
+    ['color', 'id', 'title', 'date', 'priority',
+      'category', 'delete', 'edit', 'select'];
   dataSource: MatTableDataSource<Task>;
 
   @Output()
@@ -24,6 +26,9 @@ export class TasksComponent implements OnInit {
 
   @Output()
   deleteTask = new EventEmitter<Task>();
+
+  @Output()
+  selectCategory = new EventEmitter<Category>();
 
   @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
 
@@ -133,5 +138,9 @@ export class TasksComponent implements OnInit {
   onToggleStatus(task: Task): void {
     task.completed = !task.completed;
     this.updateTask.emit(task);
+  }
+
+  onSelectCategory(category: Category) {
+    this.selectCategory.emit(category);
   }
 }

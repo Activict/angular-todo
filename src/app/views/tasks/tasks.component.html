@@ -79,6 +79,7 @@
             [ngClass]="{'completed': task.completed,
                         'novalue': task.category == null,
                         'link': !task.completed && task.category}"
+            (click)="!task.completed && task.category && onSelectCategory(task.category)"
             mat-cell
         >
 
@@ -87,15 +88,24 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="operations">
+      <ng-container matColumnDef="delete">
         <th *matHeaderCellDef mat-header-cell></th>
         <td *matCellDef="let task" [class.completed]="task.completed"
-            class="mat-column-operations"
+            class="mat-column-delete"
             mat-cell>
 
           <button (click)="openDeleteDialog(task)" class="delete-icon" mat-icon-button>
             <mat-icon aria-hidden="false">delete</mat-icon>
           </button>
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td *matCellDef="let task" [class.completed]="task.completed"
+            class="mat-column-edit"
+            mat-cell>
 
           <button (click)="openEditTaskDialog(task)" class="edit-icon" mat-icon-button>
             <mat-icon aria-hidden="false">edit</mat-icon>
