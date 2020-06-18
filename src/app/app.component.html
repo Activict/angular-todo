@@ -455,7 +455,13 @@
               (updateTask)="onUpdateTask($event)"
               (deleteTask)="onDeleteTask($event)"
               (selectCategory)="onSelectCategory($event)"
+
+              (filterByPriority)="onFilterTasksByPriority($event)"
+              (filterByStatus)="onFilterTasksByStatus($event)"
+              (filterByTitle)="onSearchTasks($event)"
+
               [tasks]="tasksApp"
+              [priorities]="priorities"
             >
 
             </app-tasks>

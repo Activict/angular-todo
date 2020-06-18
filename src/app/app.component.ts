@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Task} from './model/Task';
 import {DataHandlerService} from './service/data-handler.service';
 import {Category} from './model/Category';
+import {Priority} from './model/Priority';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,12 @@ export class AppComponent implements OnInit {
   title = 'angular-todo';
   tasksApp: Task[];
   categoriesApp: Category[];
-  selectedCategory: Category;
+  priorities: Priority[];
+
+  selectedCategory: Category = null;
+  priorityFilter: Priority;
+  private searchTaskText = '';
+  private statusFilter: boolean;
 
   constructor(
     private dataHandler: DataHandlerService,
@@ -20,23 +26,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataHandler.getAllTasks().subscribe(tasks => this.tasksApp = tasks);
+    // this.dataHandler.getAllTasks().subscribe(tasks => this.tasksApp = tasks);
+    this.dataHandler
+      .getAllPriorities()
+      .subscribe(priorities => this.priorities = priorities);
     this.dataHandler
       .getAllCategories()
       .subscribe(categories => this.categoriesApp = categories);
+
+    this.onSelectCategory(null);
   }
 
   onSelectCategory(category: Category) {
     this.selectedCategory = category;
-
-    this.dataHandler.searchTasks(
-      this.selectedCategory,
-      null,
-      null,
-      null
-    ).subscribe(tasks => {
-      this.tasksApp = tasks;
-    });
+    this.updateTasks();
   }
 
   onUpdateTask(task: Task) {
@@ -75,6 +78,32 @@ export class AppComponent implements OnInit {
   onUpdateCategory(category: Category) {
     this.dataHandler.updateCategory(category).subscribe(() => {
       this.onSelectCategory(this.selectedCategory);
+    });
+  }
+
+  onSearchTasks(searchString: string) {
+    this.searchTaskText = searchString;
+    this.updateTasks();
+  }
+
+  onFilterTasksByStatus(status: boolean) {
+    this.statusFilter = status;
+    this.updateTasks();
+  }
+
+  onFilterTasksByPriority(priority: Priority) {
+    this.priorityFilter = priority;
+    this.updateTasks();
+  }
+
+  updateTasks() {
+    this.dataHandler.searchTasks(
+      this.selectedCategory,
+      this.searchTaskText,
+      this.statusFilter,
+      this.priorityFilter
+    ).subscribe((tasks: Task[]) => {
+      this.tasksApp = tasks;
     });
   }
 }
