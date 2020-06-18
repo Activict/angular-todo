@@ -17,13 +17,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
     TasksComponent,
-    EditTaskDialogComponent
+    EditTaskDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import {MatSelectModule} from '@angular/material/select';
   providers: [],
   entryComponents: [
     EditTaskDialogComponent,
+    ConfirmDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

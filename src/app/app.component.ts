@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataHandler.getAllTasks().subscribe(tasks => this.tasksApp = tasks);
-
     this.dataHandler
       .getAllCategories()
       .subscribe(categories => this.categoriesApp = categories);
@@ -42,6 +41,19 @@ export class AppComponent implements OnInit {
 
   onUpdateTask(task: Task) {
     this.dataHandler.updateTask(task).subscribe(() => {
+      this.dataHandler.searchTasks(
+        this.selectedCategory,
+        null,
+        null,
+        null
+      ).subscribe(tasks => {
+        this.tasksApp = tasks;
+      });
+    });
+  }
+
+  onDeleteTask(task: Task) {
+    this.dataHandler.deleteTask(task.id).subscribe(() => {
       this.dataHandler.searchTasks(
         this.selectedCategory,
         null,

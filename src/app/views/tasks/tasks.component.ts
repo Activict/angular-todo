@@ -17,8 +17,13 @@ export class TasksComponent implements OnInit {
   displayedColumns: string[] =
     ['color', 'id', 'title', 'date', 'priority', 'category'];
   dataSource: MatTableDataSource<Task>;
+
   @Output()
   updateTask = new EventEmitter<Task>();
+
+  @Output()
+  deleteTask = new EventEmitter<Task>();
+
   @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
 
   tasks: Task[];
@@ -40,10 +45,6 @@ export class TasksComponent implements OnInit {
     this.fillTable();
   }
 
-  toggleCompletedTask(task: Task) {
-    task.completed = !task.completed;
-  }
-
   getPriorityColor(task: Task): string {
     if (task.completed) {
       return '#F8F9FA';
@@ -58,7 +59,23 @@ export class TasksComponent implements OnInit {
   openEditTaskDialog(task: Task): void {
     const dialogRef = this.dialog.open(EditTaskDialogComponent,
       {data: [task, 'Редактирование задачи'], autoFocus: false});
+
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'complete') {
+        task.completed = true;
+        this.updateTask.emit(task);
+      }
+
+      if (result === 'activate') {
+        task.completed = false;
+        this.updateTask.emit(task);
+      }
+
+      if (result === 'delete') {
+        this.deleteTask.emit(task);
+        return;
+      }
+
       if (result as Task) {
         this.updateTask.emit(task);
         return;

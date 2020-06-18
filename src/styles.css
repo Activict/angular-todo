@@ -32,3 +32,16 @@ body {
 .mat-dialog-container {
   padding: 40px !important;
 }
+
+.red {
+  color: red;
+  background-color: #ffe1e4;
+}
+
+.blue {
+  color: #0b75c9;
+}
+
+.green {
+  color: #006d18;
+}
