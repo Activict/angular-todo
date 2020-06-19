@@ -28,6 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-category-dialog.component';
 import {StatComponent} from './views/stat/stat.component';
 import {StatCardComponent} from './views/stat/stat-card/stat-card.component';
+import {HeaderComponent} from './views/header/header.component';
 
 registerLocaleData((localeRu));
 
@@ -41,7 +42,8 @@ registerLocaleData((localeRu));
     TaskDatePipe,
     EditCategoryDialogComponent,
     StatComponent,
-    StatCardComponent
+    StatCardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

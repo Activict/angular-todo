@@ -54,3 +54,12 @@ body {
   border-bottom: 1px solid #dadada;
   padding-top: 20px;
 }
+
+.main-panel > .content {
+  margin-top: 0 !important;
+  padding-top: 10px !important;
+}
+
+.app-header {
+  width: 100%;
+}
