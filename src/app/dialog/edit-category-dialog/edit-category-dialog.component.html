@@ -35,7 +35,7 @@
 
   <div class="col-12 text-center">
     <button (click)="delete()"
-            *ngIf="canDelete" class="red"
+            *ngIf="canDelete && !isNew" class="red"
             mat-button
     >
       Удалить

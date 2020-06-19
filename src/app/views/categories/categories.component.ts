@@ -26,6 +26,9 @@ export class CategoriesComponent implements OnInit {
   @Output()
   updateCategory = new EventEmitter<Category>();
 
+  @Output()
+  addCategory = new EventEmitter<string>();
+
   indexMouseMove: number;
 
   constructor(
@@ -68,6 +71,19 @@ export class CategoriesComponent implements OnInit {
 
         this.updateCategory.emit(category);
         return;
+      }
+    });
+  }
+
+  openAddCategoryDialog() {
+    const dialogRef = this.dialog.open(EditCategoryDialogComponent, {
+      data: ['', 'Создать категорию', true],
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (typeof (result) === 'string') {
+        this.addCategory.emit(result);
       }
     });
   }

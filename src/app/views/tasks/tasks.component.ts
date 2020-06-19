@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {DataHandlerService} from '../../service/data-handler.service';
-import {Task} from '../../model/Task';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatDialog} from '@angular/material/dialog';
 import {MatSort} from '@angular/material/sort';
 import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
-import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog.component';
+import {Task} from '../../model/Task';
 import {Category} from '../../model/Category';
 import {Priority} from '../../model/Priority';
 
@@ -44,6 +44,9 @@ export class TasksComponent implements OnInit {
   @Output()
   filterByPriority = new EventEmitter<Priority>();
 
+  @Output()
+  addTask = new EventEmitter<Task>();
+
   @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
 
   @ViewChild(MatSort, {static: false}) private sort: MatSort;
@@ -58,14 +61,17 @@ export class TasksComponent implements OnInit {
     this.fillTable();
   }
 
-  constructor(
-    private dataHandler: DataHandlerService,
-    private dialog: MatDialog) {
-  }
+  @Input()
+  selectedCategory: Category;
 
   @Input('priorities')
   set setPriorities(priorities: Priority[]) {
     this.priorities = priorities;
+  }
+
+  constructor(
+    private dataHandler: DataHandlerService,
+    private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -182,5 +188,18 @@ export class TasksComponent implements OnInit {
       this.selectedPriorityFilter = value;
       this.filterByPriority.emit(this.selectedPriorityFilter);
     }
+  }
+
+  openAddTaskDialog() {
+    const task = new Task(null, '', false, null, this.selectedCategory);
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {
+      data: [task, 'Добавление задачи', true]
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addTask.emit(task);
+      }
+    });
   }
 }

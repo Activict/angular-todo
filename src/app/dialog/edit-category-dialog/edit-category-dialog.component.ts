@@ -12,10 +12,11 @@ export class EditCategoryDialogComponent implements OnInit {
   dialogTitle: string;
   categoryTitle: string;
   canDelete: boolean = true;
+  isNew: boolean;
 
   constructor(
     private dialogRef: MatDialogRef<EditCategoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: [string, string],
+    @Inject(MAT_DIALOG_DATA) private data: [string, string, boolean],
     private dialog: MatDialog
   ) {
   }
@@ -23,7 +24,8 @@ export class EditCategoryDialogComponent implements OnInit {
   ngOnInit(): void {
     this.categoryTitle = this.data[0];
     this.dialogTitle = this.data[1];
-    console.log(this.categoryTitle);
+    this.isNew = this.data[2] || false;
+
     if (!this.categoryTitle) {
       this.canDelete = false;
     }

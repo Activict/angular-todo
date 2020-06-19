@@ -70,12 +70,11 @@
     <div class="row">
       <div class="text-left col-6">
         <button (click)="$event.stopPropagation();
-                         onFilterByStatus(null);
-                         searchTaskText = '';
-                         onFilterByTitle()"
+                         onFilterByStatus(null); onFilterByPriority(null);
+                         searchTaskText = ''; onFilterByTitle()"
                 *ngIf="selectedStatusFilter != null
-                      || (searchTaskText != null
-                      && searchTaskText.trim() !='')"
+                      || selectedPriorityFilter != null
+                      || (searchTaskText != null && searchTaskText.trim() !='')"
                 aria-label="Clear" mat-button matSuffix
         >
           Сбросить фильтры
@@ -83,7 +82,10 @@
       </div>
 
       <div class="text-right col-6">
-        <button color="primary" mat-raised-button>Добавить</button>
+        <button (click)="openAddTaskDialog()" color="primary"
+                mat-raised-button
+        >Добавить
+        </button>
       </div>
     </div>
   </div>

@@ -15,6 +15,7 @@ export class EditTaskDialogComponent implements OnInit {
 
   dialogTitle: string;
   task: Task;
+  isNew: boolean;
   categories: Category[];
   priorities: Priority[];
 
@@ -25,7 +26,7 @@ export class EditTaskDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<EditTaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: [Task, string],
+    @Inject(MAT_DIALOG_DATA) private data: [Task, string, boolean],
     private dataHandler: DataHandlerService,
     private dialog: MatDialog,
   ) {
@@ -34,6 +35,7 @@ export class EditTaskDialogComponent implements OnInit {
   ngOnInit(): void {
     this.task = this.data[0];
     this.dialogTitle = this.data[1];
+    this.isNew = this.data[2] || false;
 
     this.tmpTitle = this.task.title;
     this.tmpCategory = this.task.category;
