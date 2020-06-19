@@ -29,7 +29,11 @@ export class CategoriesComponent implements OnInit {
   @Output()
   addCategory = new EventEmitter<string>();
 
+  @Output()
+  searchCategory = new EventEmitter<string>();
+
   indexMouseMove: number;
+  searchCategoryTitle: string;
 
   constructor(
     private dataHandler: DataHandlerService,
@@ -86,5 +90,12 @@ export class CategoriesComponent implements OnInit {
         this.addCategory.emit(result);
       }
     });
+  }
+
+  search() {
+    if (this.searchCategoryTitle == null) {
+      return;
+    }
+    this.searchCategory.emit(this.searchCategoryTitle);
   }
 }

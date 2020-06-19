@@ -49,3 +49,12 @@ span.add-icon-area {
   text-align: center;
   vertical-align: middle;
 }
+
+.nav {
+  margin-top: 0;
+}
+
+.search-category-area {
+  width: 87%;
+  margin: auto;
+}

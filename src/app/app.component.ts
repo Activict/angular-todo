@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   priorityFilter: Priority;
   private searchTaskText = '';
   private statusFilter: boolean;
+  private searchCategoryText = '';
 
   constructor(
     private dataHandler: DataHandlerService,
@@ -42,43 +43,53 @@ export class AppComponent implements OnInit {
     this.updateTasks();
   }
 
-  onUpdateTask(task: Task) {
-    this.dataHandler.updateTask(task).subscribe(() => {
-      this.dataHandler.searchTasks(
-        this.selectedCategory,
-        null,
-        null,
-        null
-      ).subscribe(tasks => {
-        this.tasksApp = tasks;
-      });
-    });
-  }
-
-  onDeleteTask(task: Task) {
-    this.dataHandler.deleteTask(task.id).subscribe(() => {
-      this.dataHandler.searchTasks(
-        this.selectedCategory,
-        null,
-        null,
-        null
-      ).subscribe(tasks => {
-        this.tasksApp = tasks;
-      });
-    });
-  }
-
   onDeleteCategory(category: Category) {
     this.dataHandler.deleteCategory(category.id).subscribe(cat => {
       this.selectedCategory = null;
-      this.onSelectCategory(this.selectedCategory);
+      this.onSearchCategory(this.searchCategoryText);
     });
   }
 
   onUpdateCategory(category: Category) {
     this.dataHandler.updateCategory(category).subscribe(() => {
-      this.onSelectCategory(this.selectedCategory);
+      this.onSearchCategory(this.searchCategoryText);
+      if (!this.categoriesApp.includes(this.selectedCategory)) {
+        this.selectedCategory = null;
+        this.onSelectCategory(this.selectedCategory);
+      }
     });
+  }
+
+  onAddCategory(categoryTitle: string) {
+    this.dataHandler.addCategory(categoryTitle).subscribe(() => {
+      this.updateCategories();
+    });
+  }
+
+  onSearchCategory(title: string) {
+    this.searchCategoryText = title;
+    this.dataHandler.searchCategories(title).subscribe(categories => {
+      this.categoriesApp = categories;
+    });
+  }
+
+  onUpdateTask(task: Task) {
+    this.dataHandler.updateTask(task).subscribe(() => {
+      this.updateTasks();
+    });
+  }
+
+  onDeleteTask(task: Task) {
+    this.dataHandler.deleteTask(task.id).subscribe(() => {
+      this.updateTasks();
+    });
+  }
+
+  private updateCategories() {
+    this.dataHandler.getAllCategories().subscribe(categories => {
+        this.categoriesApp = categories;
+      }
+    );
   }
 
   onSearchTasks(searchString: string) {
@@ -102,12 +113,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onAddCategory(categoryTitle: string) {
-    this.dataHandler.addCategory(categoryTitle).subscribe(() => {
-      this.updateCategories();
-    });
-  }
-
   private updateTasks() {
     this.dataHandler.searchTasks(
       this.selectedCategory,
@@ -117,12 +122,5 @@ export class AppComponent implements OnInit {
     ).subscribe((tasks: Task[]) => {
       this.tasksApp = tasks;
     });
-  }
-
-  private updateCategories() {
-    this.dataHandler.getAllCategories().subscribe(categories => {
-        this.categoriesApp = categories;
-      }
-    );
   }
 }
