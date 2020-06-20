@@ -11,7 +11,6 @@ export class EditCategoryDialogComponent implements OnInit {
 
   dialogTitle: string;
   categoryTitle: string;
-  canDelete: boolean = true;
   isNew: boolean;
 
   constructor(
@@ -25,10 +24,6 @@ export class EditCategoryDialogComponent implements OnInit {
     this.categoryTitle = this.data[0];
     this.dialogTitle = this.data[1];
     this.isNew = this.data[2] || false;
-
-    if (!this.categoryTitle) {
-      this.canDelete = false;
-    }
   }
 
   onConfirm() {
