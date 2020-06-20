@@ -3,21 +3,28 @@
 }
 
 .edit-category-icon-area {
-  width: 5%;
-  display: inline-block;
+  margin-right: 8px;
   text-align: left;
   font-size: 13px;
 }
 
+.edit-category-icon:hover {
+  color: rgba(57, 52, 52, 0.82);
+}
+
 .category-title {
-  width: 90%;
-  display: inline-block;
+  flex-grow: 1;
+  margin: auto 0;
   font-size: 16px;
 }
 
+.nav-link-pointer {
+  display: flex;
+}
+
 .all-category-title {
-  width: 77%;
-  display: inline-block;
+  flex-grow: 1;
+  margin: auto 0;
   font-size: 16px;
 }
 
@@ -54,7 +61,18 @@ span.add-icon-area {
   margin-top: 0;
 }
 
+.nav-link {
+  display: flex;
+}
+
 .search-category-area {
   width: 87%;
   margin: auto;
+}
+
+.uncompleted-count {
+  background-color: rgba(224, 224, 224, 0.82);
+  padding: 4px 9px;
+  color: #3C4858;
+  border-radius: 4px;
 }
