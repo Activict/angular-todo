@@ -1,0 +1,21 @@
+.header-icon {
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.settings {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.settings-link {
+  font-size: 13px;
+  font-weight: lighter;
+  padding-left: 40px;
+  flex-grow: 1;
+}
+
+p {
+  margin-right: 10px;
+}

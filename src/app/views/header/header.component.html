@@ -1,0 +1,30 @@
+<div class="row settings">
+  <div class="settings-link">
+
+    <button (click)="onToggleMenu()" mat-icon-button type="button">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <p class="navbar-brand">{{categoryName}}</p>
+
+    <p (click)="onToggleStat()" *ngIf="showStat" class="link navbar-brand">
+      Скрыть статистику
+    </p>
+    <p (click)="onToggleStat()" *ngIf="!showStat" class="link navbar-brand">
+      Показать статистику
+    </p>
+
+  </div>
+
+  <div class="settings-sets">
+
+    <button (click)="showSettings()" class="header-icon" mat-icon-button>
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <button class="header-icon" mat-icon-button>
+      <mat-icon>help</mat-icon>
+    </button>
+
+  </div>
+</div>
