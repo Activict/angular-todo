@@ -73,6 +73,6 @@ span.add-icon-area {
 .uncompleted-count {
   background-color: rgba(224, 224, 224, 0.82);
   padding: 4px 9px;
-  color: #3C4858;
+  color: black;
   border-radius: 4px;
 }

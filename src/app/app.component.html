@@ -1,17 +1,25 @@
 <div class="wrapper ">
 
-  <app-categories (selectCategory)="onSelectCategory($event)"
-                  (deleteCategory)="onDeleteCategory($event)"
-                  (updateCategory)="onUpdateCategory($event)"
-                  (addCategory)="onAddCategory($event)"
-                  (searchCategory)="onSearchCategory($event)"
-                  [categoryMap]="categoryMap"
-                  [uncompletedTotal]="uncompletedTotalTasksCount"
+  <div
+    class="sidebar"
+    data-background-color="white"
+    data-color="purple"
+    data-intro="Фильтрация задач, добавление/удаление/редактирование категорий"
+    data-position="right"
+    data-step="1"
+  >
+    <app-categories (addCategory)="onAddCategory($event)"
+                    (deleteCategory)="onDeleteCategory($event)"
+                    (searchCategory)="onSearchCategory($event)"
+                    (selectCategory)="onSelectCategory($event)"
+                    (updateCategory)="onUpdateCategory($event)"
+                    [categories]="categoriesApp"
+                    [categoryMap]="categoryMap"
 
-                  [selectedCategory]="selectedCategory"
-                  [categories]="categoriesApp"
-  ></app-categories>
-
+                    [selectedCategory]="selectedCategory"
+                    [uncompletedTotal]="uncompletedTotalTasksCount"
+    ></app-categories>
+  </div>
   <div class="main-panel">
     <!-- Navbar -->
     <app-header
@@ -25,12 +33,17 @@
     <div class="content">
       <div class="container-fluid">
 
-        <app-stat
-          [completeTaskInCategory]="completedCountInCategory"
-          [totalTaskInCategory]="totalTasksCountInCategory"
-          [uncompleteTaskInCategory]="uncompletedCountInCategory"
-          [showStat]="showStat"
-        ></app-stat>
+        <div data-intro="Статистика по всем задачам"
+             data-position="top"
+             data-step="2"
+        >
+          <app-stat
+            [completeTaskInCategory]="completedCountInCategory"
+            [showStat]="showStat"
+            [totalTaskInCategory]="totalTasksCountInCategory"
+            [uncompleteTaskInCategory]="uncompletedCountInCategory"
+          ></app-stat>
+        </div>
 
         <div class="row">
 

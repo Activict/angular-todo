@@ -5,6 +5,7 @@ import {Category} from './model/Category';
 import {Priority} from './model/Priority';
 import {zip} from 'rxjs';
 import {concatMap, map} from 'rxjs/operators';
+import {IntroService} from './service/intro.service';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private dataHandler: DataHandlerService,
+    private introService: IntroService,
   ) {
   }
 
@@ -49,6 +51,8 @@ export class AppComponent implements OnInit {
 
     this.fillCategories();
     this.onSelectCategory(null);
+
+    this.introService.startIntroJS(true);
   }
 
   onSelectCategory(category: Category) {
