@@ -11,8 +11,13 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   categoryName: string;
+
   @Output()
   toggleStat = new EventEmitter<boolean>();
+
+  @Output()
+  toggleMenu = new EventEmitter();
+
   @Input()
   showStat: boolean;
 
@@ -31,5 +36,9 @@ export class HeaderComponent implements OnInit {
       autoFocus: false,
       width: '500px'
     });
+  }
+
+  onToggleMenu() {
+    this.toggleMenu.emit();
   }
 }

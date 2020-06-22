@@ -34,10 +34,16 @@ export class AppComponent implements OnInit {
 
   showStat = true;
 
+  menuOpened: boolean;
+  menuPosition: string;
+  menuMode: string;
+  showBackDrop: boolean;
+
   constructor(
     private dataHandler: DataHandlerService,
     private introService: IntroService,
   ) {
+    this.setMenuValues();
   }
 
   ngOnInit(): void {
@@ -206,5 +212,20 @@ export class AppComponent implements OnInit {
 
   toggleStat(showStat: boolean) {
     this.showStat = showStat;
+  }
+
+  toggleMenu() {
+    this.menuOpened = !this.menuOpened;
+  }
+
+  onClosedMenu() {
+    this.menuOpened = false;
+  }
+
+  private setMenuValues() {
+    this.menuPosition = 'left';
+    this.menuOpened = true;
+    this.menuMode = 'push';
+    this.showBackDrop = false;
   }
 }
