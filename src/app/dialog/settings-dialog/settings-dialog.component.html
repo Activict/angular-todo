@@ -1,0 +1,15 @@
+<mat-dialog-content>
+  <p class="settings-title with-subtitle" mat-dialog-title>Настройка приоритетов</p>
+
+  <app-priorities
+    (addPriority)="onAddPriority($event)"
+    (deletePriority)="onDeletePriority($event)"
+    (updatePriority)="onUpdatePriority($event)"
+    [priorities]="priorities">
+  </app-priorities>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button (click)="onClose()" color="primary" mat-raised-button>Закрыть</button>
+</mat-dialog-actions>

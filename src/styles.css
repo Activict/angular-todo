@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/css/material-dashboard.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~bootstrap-css-only/css/bootstrap.min.css";
+@import "~intro.js/minified/introjs.min.css";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.not-found {
+  margin-top: 30px;
+  font-size: 20px;
+  color: rgba(74, 74, 74, 0.75);
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.size25 {
+  font-size: 25px !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-container {
+  padding: 40px !important;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: #0b75c9;
+}
+
+.green {
+  color: #006d18;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.line {
+  border-bottom: 1px solid #dadada;
+  padding-top: 20px;
+}
+
+.main-panel > .content {
+  margin-top: 0 !important;
+  padding-top: 10px !important;
+}
+
+.app-header {
+  width: 100%;
+}
